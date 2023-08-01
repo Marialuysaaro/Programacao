@@ -1,23 +1,50 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
-import 'package:meuapp_a/pagina_inicial.dart';
 
-
-void main() {
-  runApp(MeuApp());
+void main () {
+  runApp(PaginaInicial());
 }
 
-
-class MeuApp extends StatelessWidget {
-  const MeuApp({super.key});
+class PaginaInicial extends StatelessWidget {
+  const PaginaInicial({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: PaginaInicial(),
+      home: Home(),
     );
-    
+  }
+}
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+        String x = "100";
+    return Scaffold(
+      appBar: AppBar(
+        title:Text("Meu Aplicativo"),
+      ),
+      body: 
+      Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(x),
+            ElevatedButton(
+            onPressed: () {
+              // AO PRESSIONAR O BOTAO
+              print("Antes de zerar");
+              print(x);
+              x = "0";
+              print("Depois de zerar");
+              print(x);
+            },
+            child: Text("Zerar"),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
