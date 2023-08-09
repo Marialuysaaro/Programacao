@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 void main () {
@@ -13,8 +15,22 @@ class PaginaInicial extends StatelessWidget {
     routes: {
       '/': (context) => Home(),
       '/contador': (context) => Contador(),
-      '/curtir': (context) => Curtir(),  
+      '/curtir': (context) => Curtir(), 
+       '/cadastro': (context) => Cadastro(), 
     },
+    );
+  }
+}
+
+class Cadastro extends StatelessWidget {
+  const Cadastro({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text ("Cadastro"),
+      ),
     );
   }
 }
@@ -92,6 +108,15 @@ class Home extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
             onTap: () {
             Navigator.pushNamed(context, '/curtir');
+            }
+          ),
+          ListTile(
+            leading: Icon(Icons.app_registration_outlined, size:36,),
+            title: Text("Cadastro"),
+            subtitle: Text("Cadastra-se"),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {
+            Navigator.pushNamed(context, '/cadastro');
             }
           ),
         ],
