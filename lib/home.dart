@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -36,6 +38,15 @@ class Home extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
             onTap: () {
             Navigator.pushNamed(context, '/cadastro');
+            }
+          ),
+                    ListTile(
+            leading: Icon(Icons.login, size:36,),
+            title: Text("Login"),
+            subtitle: Text("faça seu login"),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {
+            Navigator.pushNamed(context, '/login');
             }
           ),
         ],
