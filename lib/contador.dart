@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Contador extends StatefulWidget {
   const Contador({super.key});
@@ -11,6 +12,24 @@ class Contador extends StatefulWidget {
 
 class _ContadorState extends State<Contador> {
     int x = 100;
+
+  @override
+  void initState() {
+    super.initState();
+    obtemValor(); //lê da memória fora que abre a própria
+  }
+  void obtemValor() async{
+    //busca um valor da memória persistente
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+          x = prefs.getInt('contador')?? 0;
+    });
+  }
+  void salvarValor(int valor) async{
+    // salva um valor da memória persistente
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('contador', valor);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +46,8 @@ class _ContadorState extends State<Contador> {
             onPressed: () {
             setState(() {
               x = x + 1;
-              print(x);
             });
+            salvarValor(x);
             },
               child: Text("Incrementar"),
             ),
@@ -36,8 +55,8 @@ class _ContadorState extends State<Contador> {
             onPressed: () {
             setState(() {
               x = x - 1;
-              print(x);
             });
+            salvarValor(x);
             },
               child: Text("Descrementar"),
             ),
